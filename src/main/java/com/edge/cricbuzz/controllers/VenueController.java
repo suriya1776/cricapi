@@ -2,6 +2,7 @@ package com.edge.cricbuzz.controllers;
 
 
 import com.edge.cricbuzz.domain.Venue;
+import com.edge.cricbuzz.domain.dto.VenueRequest;
 import com.edge.cricbuzz.repository.VenueRepository;
 import com.edge.cricbuzz.service.VenueService;
 import lombok.RequiredArgsConstructor;
@@ -25,18 +26,22 @@ public class VenueController {
     }
 
     @PostMapping
-    public String addVenues(){
-        return "Add new venues";
+    public ResponseEntity<Venue> addVenues(@RequestBody VenueRequest venueRequest){
+
+        return venueService.addVenues(venueRequest);
+
     }
 
-    @PutMapping
-    public String updateVenues(){
-        return "Update a existing venues";
+    @PutMapping("/{id}")
+    public ResponseEntity<Venue> updateVenues(@RequestBody VenueRequest venueRequest , @PathVariable Long id){
+
+        return venueService.updateVenues(venueRequest, id);
     }
 
-    @DeleteMapping
-    public String deleteVenues(){
-        return "Delete a venue";
+    @DeleteMapping("/{id}")
+    public String deleteVenue(@PathVariable Long id){
+
+        return venueService.deleteVenue(id);
     }
 
 }

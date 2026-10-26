@@ -2,6 +2,7 @@ package com.edge.cricbuzz.service;
 
 
 import com.edge.cricbuzz.domain.Venue;
+import com.edge.cricbuzz.domain.dto.VenueRequest;
 import com.edge.cricbuzz.repository.VenueRepository;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,31 @@ public class VenueService {
 
         List<Venue> venues = venueRepository.findAll();
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(venues);
+    }
+
+
+    public ResponseEntity<Venue> addVenues(VenueRequest venueRequest){
+              Venue venue  = Venue.builder()
+                      .name(venueRequest.getName())
+                      .city(venueRequest.getCity()).build();
+
+              return ResponseEntity.status(HttpStatus.CREATED).body(venueRepository.save(venue));
+    }
+
+
+    public ResponseEntity<Venue>  updateVenues(VenueRequest venueRequest , Long id){
+        Venue existingVenue = venueRepository.getById(id);
+        Venue updatedVenue = Venue.builder()
+                .id(existingVenue.getId())
+                .name(venueRequest.getName())
+                .city(venueRequest.getCity()).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(venueRepository.save(updatedVenue));
+
+    }
+
+    public String deleteVenue(Long id){
+        venueRepository.deleteById(id);
+        return "Venue with id " + id + "deleted";
     }
 
 }

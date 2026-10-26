@@ -2,11 +2,14 @@ package com.edge.cricbuzz.domain;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name = "match_venue")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Venue {
 
     @Id

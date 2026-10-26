@@ -1,6 +1,7 @@
 package com.edge.cricbuzz.domain.dto;
 
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
