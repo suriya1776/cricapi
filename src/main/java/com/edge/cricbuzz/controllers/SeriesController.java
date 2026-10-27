@@ -2,12 +2,11 @@ package com.edge.cricbuzz.controllers;
 
 
 import com.edge.cricbuzz.domain.Series;
+import com.edge.cricbuzz.domain.dto.SeriesRequest;
 import com.edge.cricbuzz.service.SeriesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +20,11 @@ public class SeriesController {
     @GetMapping
     public ResponseEntity<List<Series>> getSeries(){
         return seriesService.getSeries();
+    }
+
+    @PostMapping
+    public ResponseEntity<Series>  createSeries(@RequestBody SeriesRequest seriesRequest){
+        return seriesService.createSeries(seriesRequest);
     }
 
 }

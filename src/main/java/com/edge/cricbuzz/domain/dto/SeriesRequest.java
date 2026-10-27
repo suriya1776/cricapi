@@ -1,5 +1,7 @@
 package com.edge.cricbuzz.domain.dto;
 
+import com.edge.cricbuzz.domain.enums.Gender;
+import com.edge.cricbuzz.domain.enums.SeriesCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,12 +15,12 @@ public class SeriesRequest {
 
         private String name;
 
-        private String category;
+        private SeriesCategory category;
 
-        private String gender;
+        private Gender gender;
 
         private Date startDate;
 
-        private Date endData;
+        private Date endDate;
 
 }

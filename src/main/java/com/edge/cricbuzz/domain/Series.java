@@ -34,6 +34,6 @@ public class Series {
     private Date startDate;
 
     @Column(name = "series_end_date", nullable = false)
-    private Date endData;
+    private Date endDate;
 
 }
