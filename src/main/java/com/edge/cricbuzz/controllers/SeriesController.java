@@ -27,4 +27,17 @@ public class SeriesController {
         return seriesService.createSeries(seriesRequest);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Series> updateSeries(@RequestBody SeriesRequest seriesRequest, @PathVariable Long id){
+
+        return  seriesService.updateSeries(seriesRequest , id);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteSeries(@PathVariable Long id){
+        return seriesService.deleteSeries(id);
+    }
+
+
+
 }

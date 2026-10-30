@@ -36,5 +36,26 @@ public class SeriesService {
         return ResponseEntity.status(HttpStatus.CREATED).body(seriesRepository.save(series));
     }
 
+    public ResponseEntity<Series> updateSeries(SeriesRequest seriesRequest, Long id){
+        Series existingSeries = seriesRepository.getById(id);
+        Series updatedSeries = Series.builder()
+                .id(existingSeries.getId())
+                .gender(seriesRequest.getGender())
+                .category(seriesRequest.getCategory())
+                .name(seriesRequest.getName())
+                .startDate(seriesRequest.getStartDate())
+                .endDate(seriesRequest.getEndDate())
+                .build();
+
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(seriesRepository.save(updatedSeries));
+    }
+
+
+    public String deleteSeries(Long id){
+        seriesRepository.deleteById(id);
+        return "Series named "+ id +" Deleted successfully";
+    }
+
 
 }
